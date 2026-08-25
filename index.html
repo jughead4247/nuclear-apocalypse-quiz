@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Nuclear Apocalypse Survival Quiz — 50 decisions that test your survival instincts, preparation, judgment and morality after a nuclear disaster.">
+
+    <meta name="keywords"
+        content="nuclear apocalypse quiz, nuclear survival quiz, apocalypse survival test, nuclear disaster quiz, survival quiz">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical"
+    href="https://apocalypsequizzes.com/nuclear-apocalypse-quiz/">
+
+<meta property="og:title"
+        content="Nuclear Apocalypse Survival Quiz">
+
+    <meta property="og:description"
+        content="Could you survive a nuclear apocalypse? Make 50 decisions and discover your survival and morality scores.">
+
+    <meta property="og:type" 
+content="website">
+
+    <title>Nuclear Apocalypse Survival Quiz | Apocalypse Quizzes</title>
+
+    <link rel="stylesheet" 
+href="style.css">
+</head>
+
+<body>
+
+    <main class="quiz-container">
+
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <header class="site-header">
+
+            <div class="warning-symbol">
+                ☢️
+            </div>
+
+            <h1>Nuclear Apocalypse Survival Quiz</h1>
+
+            <p class="subtitle">
+                50 Decisions. One Apocalypse. How long would you survive?
+            </p>
+
+        </header>
+
+
+        <!-- =========================
+             START SCREEN
+        ========================== -->
+
+        <section id="start-screen" class="screen">
+
+            <div class="intro-card">
+
+                <div class="intro-icon">
+                    ☢️
+                </div>
+
+                <h2>The Nuclear Apocalypse Has Begun</h2>
+
+                <p>
+                    Nuclear missiles have been launched. Cities are
+                    disappearing. Communications are failing. Fallout
+                    is spreading.
+                </p>
+
+                <p>
+                    You have limited information, limited supplies and
+                    difficult decisions ahead.
+                </p>
+
+                <p>
+                    Your choices will determine not only how well you
+                    survive, but also what kind of person you become.
+                </p>
+
+                <div class="quiz-info">
+
+                    <div>
+                        <strong>50</strong>
+                        <span>Decisions</span>
+                    </div>
+
+                    <div>
+                        <strong>☢️</strong>
+                        <span>Nuclear Disaster</span>
+                    </div>
+
+                    <div>
+                        <strong>❤️</strong>
+                        <span>Morality</span>
+                    </div>
+
+                </div>
+
+                <button id="start-btn" class="primary-btn">
+                    START THE QUIZ
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             QUIZ SCREEN
+        ========================== -->
+
+        <section id="quiz-screen"
+            class="screen hidden">
+
+            <div class="quiz-card">
+
+                <div class="quiz-top">
+
+                    <span id="question-number">
+                        Decision 1 of 50
+                    </span>
+
+                    <span class="hazard-small">
+                        ☢️
+                    </span>
+
+                </div>
+
+
+                <!-- Progress -->
+
+                <div class="progress-container">
+
+                    <div id="progress-bar"
+                        class="progress-bar">
+                    </div>
+
+                </div>
+
+
+                <!-- Question -->
+
+                <div class="question-area">
+
+                    <h2 id="question">
+                        Question
+                    </h2>
+
+                </div>
+
+
+                <!-- Answers -->
+
+                <div id="answers"
+                    class="answers">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             RESULT SCREEN
+        ========================== -->
+
+        <section id="result-screen"
+            class="screen hidden">
+
+            <div class="result-card">
+
+                <div id="result-icon"
+                    class="result-icon">
+                    ☢️
+                </div>
+
+                <p class="result-label">
+                    YOUR NUCLEAR APOCALYPSE RESULT
+                </p>
+
+                <h2 id="result-title">
+                    Apocalypse Survivor
+                </h2>
+
+                <div class="score-display">
+
+                    <span id="final-score">
+                        0
+                    </span>
+
+                    <span class="percent">
+                        %
+                    </span>
+
+                </div>
+
+                <p class="score-label">
+                    Survival Score
+                </p>
+
+
+                <div class="result-description-box">
+
+                    <p id="result-description">
+                        Your result will appear here.
+                    </p>
+
+                </div>
+
+
+                <div class="survival-box">
+
+                    <span class="box-label">
+                        ESTIMATED SURVIVAL
+                    </span>
+
+                    <strong id="survival-time">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <!-- =========================
+                     MORALITY
+                ========================== -->
+
+                <div class="morality-section">
+
+                    <h3>
+                        ❤️ Morality
+                    </h3>
+
+                    <div class="morality-score">
+
+                        <span id="morality-score">
+                            0%
+                        </span>
+
+                    </div>
+
+                    <p id="morality-description">
+                        Your morality result will appear here.
+                    </p>
+
+                </div>
+
+
+                <!-- =========================
+                     ACTION BUTTONS
+                ========================== -->
+
+                <div class="result-buttons">
+
+                    <button id="restart-btn"
+                        class="primary-btn">
+                        🔄 TRY AGAIN
+                    </button>
+
+                    <button id="share-btn"
+                        class="secondary-btn">
+                        📤 SHARE RESULT
+                    </button>
+
+                    <button id="challenge-btn"
+                        class="secondary-btn">
+                        ⚡ CHALLENGE SOMEONE
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             HOME INFO
+        ========================== -->
+
+        <section id="home-info"
+            class="home-info">
+
+            <div class="info-card">
+
+                <h2>Could You Survive?</h2>
+
+                <p>
+                    A nuclear apocalypse isn't simply about surviving
+                    the initial blast. Shelter, fallout, water, food,
+                    information, cooperation and decision-making could
+                    determine whether you survive for days, months or
+                    years.
+                </p>
+
+                <p>
+                    Every decision in this test affects your survival
+                    score. Some decisions also test your morality.
+                </p>
+
+                <p class="disclaimer">
+                    This quiz is created for entertainment and
+                    educational purposes. It is not a substitute for
+                    official emergency guidance.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FOOTER
+        ========================== -->
+
+        <footer class="site-footer">
+
+            <p>
+                ☢️ Nuclear Apocalypse Survival Quiz
+            </p>
+
+            <p>
+    Part of
+    <a href="https://apocalypsequizzes.com/">
+        Apocalypse Quizzes
+    </a>
+</p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
