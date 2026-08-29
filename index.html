@@ -7,7 +7,8 @@
 ```
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
 <title>Nuclear Apocalypse Survival Quiz | Apocalypse Quizzes</title>
 
@@ -25,8 +26,6 @@
 
 <!-- Open Graph -->
 
-<meta property="og:type" content="website">
-
 <meta property="og:title"
     content="Nuclear Apocalypse Survival Quiz | Apocalypse Quizzes">
 
@@ -36,11 +35,13 @@
 <meta property="og:url"
     content="https://apocalypsequizzes.com/nuclear-apocalypse-quiz/">
 
+<meta property="og:type"
+    content="website">
+
 <meta property="og:site_name"
     content="Apocalypse Quizzes">
 
-
-<!-- Twitter / X -->
+<!-- Twitter -->
 
 <meta name="twitter:card"
     content="summary">
@@ -51,23 +52,13 @@
 <meta name="twitter:description"
     content="Could you survive a nuclear apocalypse? Make 50 difficult decisions and discover your survival and morality scores.">
 
-
-<!-- Favicon -->
-
-<link rel="icon" href="data:image/svg+xml,
-    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-    <text y='.9em' font-size='90'>☢️</text>
-    </svg>">
-
-
-<!-- Stylesheet -->
-
-<link rel="stylesheet" href="style.css">
-
+<link rel="stylesheet"
+    href="style.css">
 
 <!-- Google Analytics -->
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YC3ERJSBST"></script>
+<script async
+    src="https://www.googletagmanager.com/gtag/js?id=G-YC3ERJSBST"></script>
 
 <script>
     window.dataLayer = window.dataLayer || [];
@@ -87,8 +78,7 @@
 <body>
 
 ```
-<main class="container">
-
+<main class="quiz-container">
 
     <!-- =====================================================
          START SCREEN
@@ -98,25 +88,28 @@
 
         <img src="Nucleareapocalyse.png"
             alt="Nuclear Apocalypse Survival Quiz"
-            class="preparedness-image">
+            class="quiz-start-image">
 
+        <h1>
+            COULD YOU SURVIVE A NUCLEAR APOCALYPSE?
+        </h1>
 
         <p class="subtitle">
-            The nuclear apocalypse has begun. Could you survive?
+            The nuclear apocalypse has begun. Your choices will
+            determine how well you survive — and what kind of
+            person you become.
         </p>
-
 
         <div class="intro-warning">
 
             <p>
                 Make difficult decisions about shelter, fallout,
-                water, food, supplies, other survivors and morality.
-                Your choices will determine how well you survive
-                and what kind of person you become.
+                water, food, supplies, other survivors and
+                morality. There are no easy choices — only
+                consequences.
             </p>
 
         </div>
-
 
         <div class="info">
 
@@ -128,10 +121,13 @@
 
             <span>•</span>
 
-            <span>Survival & Morality</span>
+            <span>Morality</span>
+
+            <span>•</span>
+
+            <span>0–100% Score</span>
 
         </div>
-
 
         <button id="start-btn">
             START QUIZ
@@ -144,34 +140,47 @@
          QUIZ SCREEN
          ===================================================== -->
 
-    <section id="quiz-screen" class="screen hidden">
+    <section id="quiz-screen"
+        class="screen hidden">
 
-        <div class="quiz-header">
+        <div class="quiz-card">
 
-            <span id="question-number">
-                Decision 1 of 50
-            </span>
+            <div class="quiz-top">
 
-            <span id="quiz-label">
-                NUCLEAR SURVIVAL TEST
-            </span>
+                <span id="question-number">
+                    Decision 1 of 50
+                </span>
+
+                <span class="hazard-small">
+                    ☢️
+                </span>
+
+            </div>
+
+
+            <div class="progress-container">
+
+                <div id="progress-bar"
+                    class="progress-bar">
+                </div>
+
+            </div>
+
+
+            <div class="question-area">
+
+                <h2 id="question">
+                    Question
+                </h2>
+
+            </div>
+
+
+            <div id="answers"
+                class="answers">
+            </div>
 
         </div>
-
-
-        <div class="progress">
-
-            <div id="progress-bar"></div>
-
-        </div>
-
-
-        <h2 id="question">
-            Question
-        </h2>
-
-
-        <div id="answers"></div>
 
     </section>
 
@@ -180,103 +189,127 @@
          RESULT SCREEN
          ===================================================== -->
 
-    <section id="result-screen" class="screen hidden">
+    <section id="result-screen"
+        class="screen hidden">
 
-        <div id="result-icon" class="icon">
-            ☢️
-        </div>
+        <div class="result-card">
 
+            <div id="result-icon"
+                class="result-icon">
+                ☢️
+            </div>
 
-        <p class="result-label">
-            YOUR NUCLEAR APOCALYPSE RESULT
-        </p>
+            <p class="result-label">
+                YOUR NUCLEAR APOCALYPSE RESULT
+            </p>
 
-
-        <h1 id="result-title">
-            Apocalypse Survivor
-        </h1>
-
-
-        <div class="result-score">
-
-            <span id="final-score">
-                0
-            </span>%
-
-        </div>
-
-
-        <p id="result-description">
-            Your result will appear here.
-        </p>
-
-
-        <!-- ESTIMATED SURVIVAL -->
-
-        <div class="survival-box">
-
-            <strong>
-                ESTIMATED SURVIVAL
-            </strong>
-
-            <span id="survival-time">
-                —
-            </span>
-
-        </div>
-
-
-        <!-- MORALITY -->
-
-        <div class="profile-section">
-
-            <h2>
-                ❤️ YOUR MORALITY
+            <h2 id="result-title">
+                Apocalypse Survivor
             </h2>
 
-            <div class="survival-box">
+            <div class="score-display">
 
-                <span id="morality-score">
-                    0%
+                <span id="final-score">
+                    0
+                </span>
+
+                <span class="percent">
+                    %
                 </span>
 
             </div>
 
-            <p id="morality-description">
-                Your morality result will appear here.
+            <p class="score-label">
+                Survival Score
             </p>
 
+
+            <div class="result-description-box">
+
+                <p id="result-description">
+                    Your result will appear here.
+                </p>
+
+            </div>
+
+
+            <div class="survival-box">
+
+                <span class="box-label">
+                    ESTIMATED SURVIVAL
+                </span>
+
+                <strong id="survival-time">
+                    —
+                </strong>
+
+            </div>
+
+
+            <!-- =========================
+                 MORALITY
+            ========================== -->
+
+            <div class="morality-section">
+
+                <h3>
+                    ❤️ Morality
+                </h3>
+
+                <div class="morality-score">
+
+                    <span id="morality-score">
+                        0%
+                    </span>
+
+                </div>
+
+                <p id="morality-description">
+                    Your morality result will appear here.
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 ACTION BUTTONS
+            ========================== -->
+
+            <div class="result-buttons">
+
+                <button id="restart-btn"
+                    class="primary-btn">
+                    🔄 TRY AGAIN
+                </button>
+
+                <button id="share-btn"
+                    class="secondary-btn">
+                    📤 SHARE RESULT
+                </button>
+
+                <button id="challenge-btn"
+                    class="secondary-btn">
+                    ⚡ CHALLENGE SOMEONE
+                </button>
+
+            </div>
+
         </div>
-
-
-        <!-- ACTION BUTTONS -->
-
-        <button id="restart-btn">
-            🔄 TRY AGAIN
-        </button>
-
-        <button id="share-btn">
-            📤 SHARE RESULT
-        </button>
-
-        <button id="challenge-btn">
-            ⚡ CHALLENGE SOMEONE
-        </button>
 
     </section>
 
 
     <!-- =====================================================
-         HOMEPAGE INFORMATION
+         HOME INFORMATION
          ===================================================== -->
 
-    <div id="home-info">
+    <section id="home-info"
+        class="home-info">
 
-
-        <section class="home-info">
+        <div class="info-card">
 
             <h2>
-                Could You Survive a Nuclear Apocalypse?
+                Could You Survive?
             </h2>
 
             <p>
@@ -288,155 +321,58 @@
             </p>
 
             <p>
-                In this 50-decision survival test, you'll face
-                difficult situations involving nuclear fallout,
-                shelter, supplies, other survivors and the choices
-                you would have to make when resources become scarce.
+                Every decision in this test affects your survival
+                score. Some decisions also test your morality.
             </p>
 
-            <p>
-                Your decisions produce a fictional survival score,
-                while some choices also affect your morality score.
+            <p class="disclaimer">
+                This quiz is created for entertainment and
+                educational purposes. It is not a substitute for
+                official emergency guidance.
             </p>
 
-            <p>
-                <strong>
-                    Would you survive — and what would you become?
-                </strong>
-            </p>
+        </div>
 
-        </section>
+    </section>
 
 
-        <section class="home-info">
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
 
-            <h2>
-                Frequently Asked Questions
-            </h2>
+    <footer class="site-footer">
 
+        <div class="footer-links">
 
-            <h3>
-                How does the Nuclear Apocalypse Survival Quiz work?
-            </h3>
+            <a href="/">
+                Home
+            </a>
 
-            <p>
-                You'll face 50 difficult decisions covering
-                shelter, fallout, water, food, supplies, survivors,
-                cooperation and morality. Your choices determine
-                your final fictional survival score.
-            </p>
+            <a href="about.html">
+                About
+            </a>
 
+            <a href="privacy.html">
+                Privacy Policy
+            </a>
 
-            <h3>
-                What is the maximum score?
-            </h3>
+            <a href="contact.html">
+                Contact
+            </a>
 
-            <p>
-                Your final survival score is displayed as a
-                percentage, with 100% representing the highest
-                possible survival score.
-            </p>
+            <a href="disclaimer.html">
+                Disclaimer
+            </a>
 
+        </div>
 
-            <h3>
-                What does my survival score mean?
-            </h3>
+        <div class="copyright">
+            © 2026 Apocalypse Quizzes
+        </div>
 
-            <p>
-                Your score represents how well your decisions
-                performed within the fictional nuclear apocalypse
-                scenario presented by the quiz.
-            </p>
-
-
-            <h3>
-                What is the morality score?
-            </h3>
-
-            <p>
-                Some decisions also evaluate the moral choices
-                you make during the scenario. Your morality score
-                reflects those choices within the fictional
-                situation.
-            </p>
-
-
-            <h3>
-                Is this a real nuclear survival test?
-            </h3>
-
-            <p>
-                No. This quiz is fictional entertainment and is
-                not a substitute for official emergency guidance
-                or professional disaster preparedness advice.
-            </p>
-
-
-            <h3>
-                Can I take the quiz again?
-            </h3>
-
-            <p>
-                Yes. Select TRY AGAIN after completing the quiz to
-                replay the scenario and see how different choices
-                affect your result.
-            </p>
-
-
-            <h3>
-                Can I challenge my friends?
-            </h3>
-
-            <p>
-                Yes. After completing the quiz, use the Challenge
-                Someone button to share your result and compare
-                your survival score.
-            </p>
-
-        </section>
-
-    </div>
-
+    </footer>
 
 </main>
-
-
-<!-- =====================================================
-     FOOTER
-     ===================================================== -->
-
-<footer class="site-footer">
-
-    <div class="footer-links">
-
-        <a href="/">
-            Home
-        </a>
-
-        <a href="about.html">
-            About
-        </a>
-
-        <a href="privacy.html">
-            Privacy Policy
-        </a>
-
-        <a href="contact.html">
-            Contact
-        </a>
-
-        <a href="disclaimer.html">
-            Disclaimer
-        </a>
-
-    </div>
-
-
-    <div class="copyright">
-        © 2026 Apocalypse Quizzes
-    </div>
-
-</footer>
 
 
 <script src="script.js"></script>
