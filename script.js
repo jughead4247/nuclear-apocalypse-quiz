@@ -551,13 +551,13 @@ const questions = [
 
 ];
 
-// ============================================================
+// ===============================
 // SCORE CALCULATION
-// ============================================================
+// ===============================
 
 const maxSurvivalScore = questions.reduce((total, question) => {
     return total + Math.max(
-        ...question.answers.map(answer => Number(answer[1]) || 0)
+        ...question.answers.map(answer => answer[1])
     );
 }, 0);
 
@@ -565,8 +565,7 @@ const maxMoralityScore = questions.reduce((total, question) => {
 
     const moralityValues = question.answers
         .map(answer => answer[2])
-        .filter(value => value !== null && value !== undefined)
-        .map(value => Number(value) || 0);
+        .filter(value => value !== null && value !== undefined);
 
     return total + (
         moralityValues.length > 0
@@ -581,78 +580,69 @@ console.log("Maximum survival score:", maxSurvivalScore);
 console.log("Maximum morality score:", maxMoralityScore);
 
 
-// ============================================================
+// ===============================
 // QUIZ STATE
-// ============================================================
+// ===============================
 
 let currentQuestion = 0;
 
-// Stores the selected answer index for every question.
-// null = unanswered.
-let selectedAnswers = new Array(questions.length).fill(null);
-
-// Prevents an old automatic-advance timer from moving
-// the quiz after the user has already navigated somewhere else.
-let autoAdvanceTimer = null;
+let selectedAnswers =
+    new Array(questions.length).fill(null);
 
 
-// ============================================================
+// ===============================
 // ELEMENTS
-// ============================================================
+// ===============================
 
-const startScreen = document.getElementById("start-screen");
-const quizScreen = document.getElementById("quiz-screen");
-const resultScreen = document.getElementById("result-screen");
-const homeInfo = document.getElementById("home-info");
+const startScreen =
+    document.getElementById("start-screen");
 
-const startButton = document.getElementById("start-btn");
-const restartButton = document.getElementById("restart-btn");
-const shareButton = document.getElementById("share-btn");
-const challengeButton = document.getElementById("challenge-btn");
+const quizScreen =
+    document.getElementById("quiz-screen");
 
-const backButton = document.getElementById("back-btn");
-const nextButton = document.getElementById("next-btn");
-const submitButton = document.getElementById("submit-btn");
+const resultScreen =
+    document.getElementById("result-screen");
 
-const questionNumber = document.getElementById("question-number");
-const questionText = document.getElementById("question");
-const answersContainer = document.getElementById("answers");
-const progressBar = document.getElementById("progress-bar");
+const homeInfo =
+    document.getElementById("home-info");
 
-const finalScoreElement = document.getElementById("final-score");
-const resultTitleElement = document.getElementById("result-title");
-const resultDescriptionElement = document.getElementById("result-description");
-const survivalTimeElement = document.getElementById("survival-time");
-const moralityScoreElement = document.getElementById("morality-score");
-const moralityDescriptionElement =
-    document.getElementById("morality-description");
+const startButton =
+    document.getElementById("start-btn");
 
+const restartButton =
+    document.getElementById("restart-btn");
 
-// ============================================================
-// SAFETY CHECK
-// ============================================================
+const shareButton =
+    document.getElementById("share-btn");
 
-if (!startButton ||
-    !restartButton ||
-    !shareButton ||
-    !challengeButton ||
-    !backButton ||
-    !nextButton ||
-    !submitButton ||
-    !questionNumber ||
-    !questionText ||
-    !answersContainer ||
-    !progressBar) {
+const challengeButton =
+    document.getElementById("challenge-btn");
 
-    console.error(
-        "Quiz initialization failed: one or more required HTML elements are missing."
-    );
-}
+const backButton =
+    document.getElementById("back-btn");
+
+const nextButton =
+    document.getElementById("next-btn");
+
+const submitButton =
+    document.getElementById("submit-btn");
+
+const questionNumber =
+    document.getElementById("question-number");
+
+const questionText =
+    document.getElementById("question");
+
+const answersContainer =
+    document.getElementById("answers");
+
+const progressBar =
+    document.getElementById("progress-bar");
 
 
-// ============================================================
+// ===============================
 // BUTTON EVENTS
-// ============================================================
+// ===============================
 
 startButton.addEventListener("click", startQuiz);
 
@@ -669,13 +659,11 @@ nextButton.addEventListener("click", goNext);
 submitButton.addEventListener("click", submitQuiz);
 
 
-// ============================================================
+// ===============================
 // START QUIZ
-// ============================================================
+// ===============================
 
 function startQuiz() {
-
-    clearAutoAdvance();
 
     currentQuestion = 0;
 
@@ -690,33 +678,29 @@ function startQuiz() {
 
     homeInfo.classList.add("hidden");
 
-    progressBar.style.width = "0%";
+    showQuestion();
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
-
-    showQuestion();
 }
 
 
-// ============================================================
+// ===============================
 // RESTART QUIZ
-// ============================================================
+// ===============================
 
 function restartQuiz() {
-
-    clearAutoAdvance();
 
     currentQuestion = 0;
 
     selectedAnswers =
         new Array(questions.length).fill(null);
 
-    quizScreen.classList.add("hidden");
-
     resultScreen.classList.add("hidden");
+
+    quizScreen.classList.add("hidden");
 
     startScreen.classList.remove("hidden");
 
@@ -731,52 +715,28 @@ function restartQuiz() {
 }
 
 
-// ============================================================
-// CLEAR AUTOMATIC ADVANCE
-// ============================================================
-
-function clearAutoAdvance() {
-
-    if (autoAdvanceTimer !== null) {
-
-        clearTimeout(autoAdvanceTimer);
-
-        autoAdvanceTimer = null;
-    }
-}
-
-
-// ============================================================
+// ===============================
 // SHOW QUESTION
-// ============================================================
+// ===============================
 
 function showQuestion() {
 
-    clearAutoAdvance();
+    const current =
+        questions[currentQuestion];
 
-    // Safety boundaries.
-    if (currentQuestion < 0) {
-        currentQuestion = 0;
-    }
-
-    if (currentQuestion >= questions.length) {
-        currentQuestion = questions.length - 1;
-    }
-
-    const current = questions[currentQuestion];
-
-    // Question number.
     questionNumber.textContent =
         `Decision ${currentQuestion + 1} of ${questions.length}`;
 
-    // Question text.
     questionText.textContent =
         current.question;
 
-    // Clear old answers.
     answersContainer.innerHTML = "";
 
-    // Progress.
+
+    // ===============================
+    // PROGRESS
+    // ===============================
+
     const progress =
         ((currentQuestion + 1) / questions.length) * 100;
 
@@ -784,9 +744,9 @@ function showQuestion() {
         `${progress}%`;
 
 
-    // ========================================================
-    // CREATE ANSWERS
-    // ========================================================
+    // ===============================
+    // ANSWERS
+    // ===============================
 
     current.answers.forEach((answer, index) => {
 
@@ -801,25 +761,26 @@ function showQuestion() {
             answer[0];
 
 
-        // Restore previous selection.
+        // ==========================================
+        // RESTORE PREVIOUSLY SELECTED ANSWER
+        // ==========================================
+
         if (
             selectedAnswers[currentQuestion] === index
         ) {
-
-            button.classList.add("selected");
+            setSelectedStyle(button);
         }
 
 
-        button.addEventListener(
-            "click",
-            function () {
+        button.addEventListener("click", () => {
 
-                selectAnswer(index);
-            }
-        );
+            selectAnswer(index);
+
+        });
 
 
         answersContainer.appendChild(button);
+
     });
 
 
@@ -827,41 +788,95 @@ function showQuestion() {
 }
 
 
-// ============================================================
+// ===============================
+// SELECTED ANSWER VISUAL STYLE
+// ===============================
+
+function setSelectedStyle(button) {
+
+    // Keep the class for CSS compatibility
+    button.classList.add("selected");
+
+    // Force a visible appearance even if
+    // style.css has no .selected rule.
+
+    button.style.backgroundColor = "#3b82f6";
+
+    button.style.color = "#ffffff";
+
+    button.style.borderColor = "#60a5fa";
+
+    button.style.boxShadow =
+        "0 0 0 3px rgba(59, 130, 246, 0.30)";
+
+    button.style.transform =
+        "translateY(-1px)";
+}
+
+
+// ===============================
+// REMOVE SELECTED STYLE
+// ===============================
+
+function removeSelectedStyle(button) {
+
+    button.classList.remove("selected");
+
+    button.style.backgroundColor = "";
+
+    button.style.color = "";
+
+    button.style.borderColor = "";
+
+    button.style.boxShadow = "";
+
+    button.style.transform = "";
+}
+
+
+// ===============================
 // SELECT ANSWER
-// ============================================================
+// ===============================
 
 function selectAnswer(answerIndex) {
 
-    clearAutoAdvance();
+    // ==========================================
+    // STORE ANSWER
+    // ==========================================
 
-    // Store answer index only.
-    // No score is added here.
     selectedAnswers[currentQuestion] =
         answerIndex;
 
 
-    // Immediately highlight selected answer.
+    // ==========================================
+    // VISUAL HIGHLIGHT
+    // ==========================================
+
     const buttons =
         answersContainer.querySelectorAll(".answer");
 
     buttons.forEach((button, index) => {
 
-        button.classList.toggle(
-            "selected",
-            index === answerIndex
-        );
+        if (index === answerIndex) {
+
+            setSelectedStyle(button);
+
+        } else {
+
+            removeSelectedStyle(button);
+
+        }
+
     });
 
 
     updateNavigation();
 
 
-    // ========================================================
+    // ==========================================
     // AUTOMATIC ADVANCEMENT
-    // ========================================================
+    // ==========================================
 
-    // Don't automatically leave the final question.
     if (
         currentQuestion < questions.length - 1
     ) {
@@ -869,81 +884,74 @@ function selectAnswer(answerIndex) {
         const questionAtSelection =
             currentQuestion;
 
-        autoAdvanceTimer =
-            setTimeout(function () {
+        setTimeout(() => {
 
-                autoAdvanceTimer = null;
+            // Make sure user hasn't gone backward
+            // or changed question during delay.
 
-                // Make sure the user is still on the same
-                // question and hasn't changed the answer.
-                if (
-                    currentQuestion === questionAtSelection &&
-                    selectedAnswers[questionAtSelection] === answerIndex
-                ) {
+            if (
+                currentQuestion === questionAtSelection &&
+                selectedAnswers[questionAtSelection] === answerIndex
+            ) {
 
-                    currentQuestion++;
+                currentQuestion++;
 
-                    showQuestion();
-                }
+                showQuestion();
 
-            }, 350);
+            }
+
+        }, 450);
     }
 }
 
 
-// ============================================================
-// NEXT
-// ============================================================
+// ===============================
+// NEXT BUTTON
+// ===============================
 
 function goNext() {
 
-    clearAutoAdvance();
+    // Cannot continue without answering
+    // the current question.
 
-    // On final question, Submit handles the action.
     if (
-        currentQuestion === questions.length - 1
+        selectedAnswers[currentQuestion] === null
     ) {
-
         return;
     }
 
 
-    // IMPORTANT:
-    // Next is allowed even when the current question
-    // has not been answered.
-    //
-    // This allows the user to navigate freely.
-    // Submit will still require every question to
-    // have an answer.
+    if (
+        currentQuestion < questions.length - 1
+    ) {
 
-    currentQuestion++;
+        currentQuestion++;
 
-    showQuestion();
+        showQuestion();
+
+    }
 }
 
 
-// ============================================================
-// BACK
-// ============================================================
+// ===============================
+// BACK BUTTON
+// ===============================
 
 function goBack() {
 
-    clearAutoAdvance();
+    if (currentQuestion > 0) {
 
-    if (currentQuestion <= 0) {
+        currentQuestion--;
 
-        return;
+        showQuestion();
+
     }
-
-    currentQuestion--;
-
-    showQuestion();
 }
 
 
-// ============================================================
-// NAVIGATION UI
-// ============================================================
+// ===============================
+// NAVIGATION
+// ===============================
 
 function updateNavigation() {
 
@@ -953,34 +961,33 @@ function updateNavigation() {
     const isLast =
         currentQuestion === questions.length - 1;
 
+    const currentAnswered =
+        selectedAnswers[currentQuestion] !== null;
+
     const allAnswered =
         selectedAnswers.every(
             answer => answer !== null
         );
 
 
-    // ========================================================
-    // BACK BUTTON
-    // ========================================================
+    // ==========================================
+    // BACK
+    // ==========================================
 
     backButton.disabled =
         isFirst;
 
 
-    // ========================================================
-    // FINAL QUESTION
-    // ========================================================
+    // ==========================================
+    // LAST QUESTION
+    // ==========================================
 
     if (isLast) {
 
-        // Hide Next.
         nextButton.classList.add("hidden");
 
-        // Show Submit.
         submitButton.classList.remove("hidden");
 
-        // Submit only becomes active when every question
-        // has been answered.
         submitButton.disabled =
             !allAnswered;
 
@@ -991,31 +998,28 @@ function updateNavigation() {
 
     }
 
-    // ========================================================
+    // ==========================================
     // NORMAL QUESTIONS
-    // ========================================================
+    // ==========================================
 
     else {
 
-        // Show Next.
-        nextButton.classList.remove("hidden");
-
-        // Hide Submit.
         submitButton.classList.add("hidden");
 
-        // Next remains available even without an answer.
-        nextButton.disabled = false;
+        nextButton.classList.remove("hidden");
+
+        nextButton.disabled =
+            !currentAnswered;
+
     }
 }
 
 
-// ============================================================
-// SUBMIT
-// ============================================================
+// ===============================
+// SUBMIT QUIZ
+// ===============================
 
 function submitQuiz() {
-
-    clearAutoAdvance();
 
     const allAnswered =
         selectedAnswers.every(
@@ -1023,10 +1027,7 @@ function submitQuiz() {
         );
 
 
-    // Never allow incomplete submission.
     if (!allAnswered) {
-
-        updateNavigation();
 
         alert(
             "Please answer all questions before submitting."
@@ -1036,14 +1037,13 @@ function submitQuiz() {
     }
 
 
-    // Calculate everything only once here.
     showResult();
 }
 
 
-// ============================================================
+// ===============================
 // CALCULATE FINAL SCORES
-// ============================================================
+// ===============================
 
 function calculateFinalScores() {
 
@@ -1065,20 +1065,20 @@ function calculateFinalScores() {
                     .answers[answerIndex];
 
 
-            // Survival score.
-            survivalScore +=
-                Number(answer[1]) || 0;
+            // Survival score
+            survivalScore += answer[1];
 
 
-            // Morality score.
+            // Morality score
             if (
                 answer[2] !== null &&
                 answer[2] !== undefined
             ) {
 
-                moralityScore +=
-                    Number(answer[2]) || 0;
+                moralityScore += answer[2];
+
             }
+
         }
     );
 
@@ -1090,9 +1090,9 @@ function calculateFinalScores() {
 }
 
 
-// ============================================================
+// ===============================
 // SHOW RESULT
-// ============================================================
+// ===============================
 
 function showResult() {
 
@@ -1100,52 +1100,25 @@ function showResult() {
         calculateFinalScores();
 
 
-    // ========================================================
-    // SURVIVAL PERCENTAGE
-    // ========================================================
-
     const survivalPercentage =
         Math.round(
-            (scores.survivalScore / maxSurvivalScore) * 100
+            (scores.survivalScore /
+                maxSurvivalScore) * 100
         );
 
-
-    // ========================================================
-    // MORALITY PERCENTAGE
-    // ========================================================
 
     const moralityPercentage =
         maxMoralityScore > 0
             ? Math.round(
-                (scores.moralityScore / maxMoralityScore) * 100
+                (scores.moralityScore /
+                    maxMoralityScore) * 100
             )
             : 0;
 
 
-    console.log(
-        "Final survival score:",
-        scores.survivalScore
-    );
-
-    console.log(
-        "Final survival percentage:",
-        survivalPercentage + "%"
-    );
-
-    console.log(
-        "Final morality score:",
-        scores.moralityScore
-    );
-
-    console.log(
-        "Final morality percentage:",
-        moralityPercentage + "%"
-    );
-
-
-    // ========================================================
-    // SWITCH SCREENS
-    // ========================================================
+    // ==========================================
+    // SCREEN SWITCH
+    // ==========================================
 
     quizScreen.classList.add("hidden");
 
@@ -1154,9 +1127,15 @@ function showResult() {
     homeInfo.classList.remove("hidden");
 
 
-    // ========================================================
+    // ==========================================
     // SURVIVAL RESULT
-    // ========================================================
+    // ==========================================
+
+    document.getElementById(
+        "final-score"
+    ).textContent =
+        survivalPercentage;
+
 
     let title;
 
@@ -1240,27 +1219,35 @@ function showResult() {
 
         survival =
             "Long-term survival";
+
     }
 
 
-    finalScoreElement.textContent =
-        survivalPercentage;
-
-    resultTitleElement.textContent =
+    document.getElementById(
+        "result-title"
+    ).textContent =
         title;
 
-    resultDescriptionElement.textContent =
+
+    document.getElementById(
+        "result-description"
+    ).textContent =
         description;
 
-    survivalTimeElement.textContent =
+
+    document.getElementById(
+        "survival-time"
+    ).textContent =
         survival;
 
 
-    // ========================================================
+    // ==========================================
     // MORALITY RESULT
-    // ========================================================
+    // ==========================================
 
-    moralityScoreElement.textContent =
+    document.getElementById(
+        "morality-score"
+    ).textContent =
         moralityPercentage + "%";
 
 
@@ -1316,24 +1303,22 @@ function showResult() {
 
         moralityDescription =
             "Even after civilization collapses, you believe protecting human life, helping others and maintaining humanity should remain a priority.";
+
     }
 
 
-    moralityDescriptionElement.textContent =
+    document.getElementById(
+        "morality-description"
+    ).textContent =
         moralityTitle +
         " — " +
         moralityDescription;
 
 
-    // ========================================================
-    // FINAL PROGRESS
-    // ========================================================
-
     progressBar.style.width =
         "100%";
 
 
-    // Scroll to result.
     window.scrollTo({
         top: 0,
         behavior: "smooth"
@@ -1341,23 +1326,34 @@ function showResult() {
 }
 
 
-// ============================================================
+// ===============================
 // SHARE RESULT
-// ============================================================
+// ===============================
 
 async function shareResult() {
 
     const title =
-        resultTitleElement.textContent;
+        document.getElementById(
+            "result-title"
+        ).textContent;
+
 
     const survival =
-        survivalTimeElement.textContent;
+        document.getElementById(
+            "survival-time"
+        ).textContent;
+
 
     const finalScore =
-        finalScoreElement.textContent;
+        document.getElementById(
+            "final-score"
+        ).textContent;
+
 
     const morality =
-        moralityScoreElement.textContent;
+        document.getElementById(
+            "morality-score"
+        ).textContent;
 
 
     const shareText =
@@ -1378,14 +1374,13 @@ async function shareResult() {
 
         url:
             "https://apocalypsequizzes.com/nuclear-apocalypse-quiz/"
+
     };
 
 
     try {
 
-        if (
-            navigator.share
-        ) {
+        if (navigator.share) {
 
             await navigator.share(
                 shareData
@@ -1411,21 +1406,18 @@ async function shareResult() {
         else {
 
             alert(
-                shareText +
-                "\n\nhttps://apocalypsequizzes.com/nuclear-apocalypse-quiz/"
+                shareText
             );
+
         }
 
     }
 
     catch (error) {
 
-        // User cancelling the native share dialog
-        // is not an error we need to display.
         console.log(
-            "Sharing cancelled or unavailable.",
-            error
+            "Sharing cancelled."
         );
+
     }
 }
-
