@@ -1,6 +1,5 @@
 const questions = [
 
-```
 // Decision 1
 {
     question: "It's 8:17 AM. Your phone suddenly displays: BALLISTIC MISSILE THREAT — SEEK SHELTER IMMEDIATELY. Several missiles have reportedly been launched. You may have only minutes.",
@@ -550,7 +549,6 @@ const questions = [
         ["Surround the bunker and pressure them into sharing.", 2, 1]
     ]
 }
-```
 
 ];
 
@@ -589,15 +587,9 @@ console.log("Maximum morality score:", maxMoralityScore);
 
 let currentQuestion = 0;
 
-let survivalScore = 0;
-let moralityScore = 0;
-
 // Stores the selected answer index for every question.
-// null = unanswered.
-let userAnswers = new Array(questions.length).fill(null);
-
-// Timer used for automatic advancement.
-let autoAdvanceTimer = null;
+// null means unanswered.
+let selectedAnswers = new Array(questions.length).fill(null);
 
 
 // ===============================
@@ -628,33 +620,14 @@ const progressBar = document.getElementById("progress-bar");
 // BUTTON EVENTS
 // ===============================
 
-if (startButton) {
-    startButton.addEventListener("click", startQuiz);
-}
+startButton.addEventListener("click", startQuiz);
+restartButton.addEventListener("click", restartQuiz);
+shareButton.addEventListener("click", shareResult);
+challengeButton.addEventListener("click", shareResult);
 
-if (restartButton) {
-    restartButton.addEventListener("click", restartQuiz);
-}
-
-if (shareButton) {
-    shareButton.addEventListener("click", shareResult);
-}
-
-if (challengeButton) {
-    challengeButton.addEventListener("click", shareResult);
-}
-
-if (backButton) {
-    backButton.addEventListener("click", goBack);
-}
-
-if (nextButton) {
-    nextButton.addEventListener("click", goNext);
-}
-
-if (submitButton) {
-    submitButton.addEventListener("click", submitQuiz);
-}
+backButton.addEventListener("click", goBack);
+nextButton.addEventListener("click", goNext);
+submitButton.addEventListener("click", submitQuiz);
 
 
 // ===============================
@@ -663,27 +636,18 @@ if (submitButton) {
 
 function startQuiz() {
 
-    clearAutoAdvanceTimer();
+    homeInfo.classList.add("hidden");
 
     currentQuestion = 0;
 
-    survivalScore = 0;
-    moralityScore = 0;
-
-    userAnswers = new Array(questions.length).fill(null);
+    selectedAnswers =
+        new Array(questions.length).fill(null);
 
     startScreen.classList.add("hidden");
     resultScreen.classList.add("hidden");
     quizScreen.classList.remove("hidden");
 
-    homeInfo.classList.add("hidden");
-
     showQuestion();
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
 }
 
 
@@ -693,14 +657,10 @@ function startQuiz() {
 
 function restartQuiz() {
 
-    clearAutoAdvanceTimer();
-
     currentQuestion = 0;
 
-    survivalScore = 0;
-    moralityScore = 0;
-
-    userAnswers = new Array(questions.length).fill(null);
+    selectedAnswers =
+        new Array(questions.length).fill(null);
 
     resultScreen.classList.add("hidden");
     quizScreen.classList.add("hidden");
@@ -723,55 +683,31 @@ function restartQuiz() {
 
 function showQuestion() {
 
-    clearAutoAdvanceTimer();
-
-    if (currentQuestion < 0) {
-        currentQuestion = 0;
-    }
-
     if (currentQuestion >= questions.length) {
         currentQuestion = questions.length - 1;
     }
 
     const current = questions[currentQuestion];
 
-    // -------------------------------
-    // Question number
-    // -------------------------------
-
+    // IMPORTANT:
+    // Use backticks here. This prevents the
+    // "Unexpected identifier 'Decision'" error.
     questionNumber.textContent =
         `Decision ${currentQuestion + 1} of ${questions.length}`;
 
-    // -------------------------------
-    // Question text
-    // -------------------------------
-
     questionText.textContent = current.question;
 
-    // -------------------------------
-    // Progress
-    // -------------------------------
+    answersContainer.innerHTML = "";
 
     const progress =
         ((currentQuestion + 1) / questions.length) * 100;
 
     progressBar.style.width = `${progress}%`;
 
-    // -------------------------------
-    // Clear answers
-    // -------------------------------
 
-    answersContainer.innerHTML = "";
-
-    // -------------------------------
-    // Previously selected answer
-    // -------------------------------
-
-    const savedAnswer = userAnswers[currentQuestion];
-
-    // -------------------------------
-    // Create answer buttons
-    // -------------------------------
+    // ===============================
+    // CREATE ANSWER BUTTONS
+    // ===============================
 
     current.answers.forEach((answer, index) => {
 
@@ -779,11 +715,10 @@ function showQuestion() {
 
         button.className = "answer";
         button.type = "button";
-
         button.textContent = answer[0];
 
-        // Restore previous selection.
-        if (savedAnswer === index) {
+        // Restore previously selected answer
+        if (selectedAnswers[currentQuestion] === index) {
             button.classList.add("selected");
         }
 
@@ -795,22 +730,12 @@ function showQuestion() {
 
     });
 
-    // -------------------------------
-    // Navigation
-    // -------------------------------
+
+    // ===============================
+    // NAVIGATION
+    // ===============================
 
     updateNavigation();
-
-    // -------------------------------
-    // Scroll question into view
-    // -------------------------------
-
-    if (currentQuestion > 0) {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    }
 }
 
 
@@ -820,199 +745,145 @@ function showQuestion() {
 
 function selectAnswer(answerIndex) {
 
-    // Prevent invalid selections.
-    if (
-        answerIndex < 0 ||
-        answerIndex >= questions[currentQuestion].answers.length
-    ) {
-        return;
-    }
+    // Store answer.
+    // IMPORTANT: scores are NOT changed here.
+    selectedAnswers[currentQuestion] = answerIndex;
 
-    // Save answer.
-    userAnswers[currentQuestion] = answerIndex;
-
-    // Immediately highlight selected answer.
-    const answerButtons =
+    // Highlight selected answer immediately.
+    const buttons =
         answersContainer.querySelectorAll(".answer");
 
-    answerButtons.forEach((button, index) => {
+    buttons.forEach((button, index) => {
 
-        if (index === answerIndex) {
-            button.classList.add("selected");
-        } else {
-            button.classList.remove("selected");
-        }
+        button.classList.toggle(
+            "selected",
+            index === answerIndex
+        );
 
     });
 
-    // Update navigation because this question is now answered.
     updateNavigation();
 
-    // --------------------------------
-    // Automatic advancement
-    // --------------------------------
 
-    clearAutoAdvanceTimer();
+    // ===============================
+    // AUTOMATIC ADVANCEMENT
+    // ===============================
 
-    // Do not automatically advance after final question.
-    if (currentQuestion >= questions.length - 1) {
-        return;
+    // Do not automatically advance from
+    // the final question.
+    if (currentQuestion < questions.length - 1) {
+
+        setTimeout(() => {
+
+            // Make sure the user hasn't moved
+            // somewhere else during the delay.
+            if (
+                selectedAnswers[currentQuestion] === answerIndex &&
+                currentQuestion < questions.length - 1
+            ) {
+                currentQuestion++;
+                showQuestion();
+            }
+
+        }, 350);
     }
-
-    autoAdvanceTimer = setTimeout(() => {
-
-        // Make sure the answer still exists.
-        if (userAnswers[currentQuestion] !== null) {
-            currentQuestion++;
-            showQuestion();
-        }
-
-    }, 450);
 }
 
 
 // ===============================
-// GO NEXT
+// NEXT BUTTON
 // ===============================
 
 function goNext() {
 
-    clearAutoAdvanceTimer();
-
-    // Cannot move forward without answering.
-    if (userAnswers[currentQuestion] === null) {
-
-        // Brief visual indication.
-        answersContainer.classList.add("needs-answer");
-
-        setTimeout(() => {
-            answersContainer.classList.remove("needs-answer");
-        }, 500);
-
+    // Do not move forward without answering.
+    if (selectedAnswers[currentQuestion] === null) {
         return;
     }
 
-    // Final question uses Submit instead.
-    if (currentQuestion >= questions.length - 1) {
-        return;
+    if (currentQuestion < questions.length - 1) {
+
+        currentQuestion++;
+
+        showQuestion();
+
+    } else {
+
+        // On final question Next is replaced
+        // by Submit, so this is only a safeguard.
+        submitQuiz();
     }
-
-    currentQuestion++;
-
-    showQuestion();
 }
 
 
 // ===============================
-// GO BACK
+// BACK BUTTON
 // ===============================
 
 function goBack() {
 
-    clearAutoAdvanceTimer();
+    if (currentQuestion > 0) {
 
-    // Already at first question.
-    if (currentQuestion <= 0) {
-        return;
+        currentQuestion--;
+
+        showQuestion();
     }
-
-    currentQuestion--;
-
-    // IMPORTANT:
-    // We do NOT erase userAnswers[currentQuestion].
-    // The previous answer will automatically be highlighted.
-    showQuestion();
 }
 
 
 // ===============================
-// UPDATE NAVIGATION
+// NAVIGATION UI
 // ===============================
 
 function updateNavigation() {
 
-    const isFirstQuestion =
+    const isFirst =
         currentQuestion === 0;
 
-    const isLastQuestion =
+    const isLast =
         currentQuestion === questions.length - 1;
 
     const currentAnswered =
-        userAnswers[currentQuestion] !== null;
+        selectedAnswers[currentQuestion] !== null;
 
-    // -------------------------------
+    const allAnswered =
+        selectedAnswers.every(
+            answer => answer !== null
+        );
+
+
+    // ===============================
     // BACK
-    // -------------------------------
+    // ===============================
 
-    if (isFirstQuestion) {
-
-        backButton.classList.add("hidden");
-        backButton.disabled = true;
-
-    } else {
-
-        backButton.classList.remove("hidden");
-        backButton.disabled = false;
-    }
+    backButton.disabled = isFirst;
 
 
-    // -------------------------------
-    // NORMAL NEXT
-    // -------------------------------
+    // ===============================
+    // FINAL QUESTION
+    // ===============================
 
-    if (!isLastQuestion) {
-
-        nextButton.classList.remove("hidden");
-
-        // Next is available only after answering.
-        nextButton.disabled = !currentAnswered;
-
-    } else {
+    if (isLast) {
 
         nextButton.classList.add("hidden");
-        nextButton.disabled = true;
-    }
-
-
-    // -------------------------------
-    // SUBMIT
-    // -------------------------------
-
-    if (isLastQuestion) {
 
         submitButton.classList.remove("hidden");
 
-        const allAnswered =
-            userAnswers.every(answer => answer !== null);
+        submitButton.disabled = !allAnswered;
 
-        if (allAnswered) {
-
-            submitButton.disabled = false;
-            submitButton.textContent = "SUBMIT";
-
-        } else {
-
-            submitButton.disabled = true;
-            submitButton.textContent = "Answer All Questions";
-        }
+        submitButton.textContent =
+            allAnswered
+                ? "SUBMIT"
+                : "Answer All Questions";
 
     } else {
 
         submitButton.classList.add("hidden");
-        submitButton.disabled = true;
+
+        nextButton.classList.remove("hidden");
+
+        nextButton.disabled = !currentAnswered;
     }
-}
-
-
-// ===============================
-// CHECK ALL ANSWERS
-// ===============================
-
-function allQuestionsAnswered() {
-
-    return userAnswers.every(
-        answer => answer !== null
-    );
 }
 
 
@@ -1022,64 +893,59 @@ function allQuestionsAnswered() {
 
 function submitQuiz() {
 
-    clearAutoAdvanceTimer();
+    // Absolute protection against submitting
+    // before every question has an answer.
+    const allAnswered =
+        selectedAnswers.every(
+            answer => answer !== null
+        );
 
-    // Safety check.
-    if (!allQuestionsAnswered()) {
+    if (!allAnswered) {
 
-        submitButton.disabled = true;
-        submitButton.textContent = "Answer All Questions";
+        alert(
+            "Please answer all questions before submitting."
+        );
 
         return;
     }
-
-    // --------------------------------
-    // Calculate scores ONLY HERE
-    // --------------------------------
-
-    survivalScore = 0;
-    moralityScore = 0;
-
-    questions.forEach((question, questionIndex) => {
-
-        const answerIndex =
-            userAnswers[questionIndex];
-
-        const selectedAnswer =
-            question.answers[answerIndex];
-
-        if (!selectedAnswer) {
-            return;
-        }
-
-        // Survival score.
-        survivalScore += selectedAnswer[1];
-
-        // Morality score.
-        if (
-            selectedAnswer[2] !== null &&
-            selectedAnswer[2] !== undefined
-        ) {
-            moralityScore += selectedAnswer[2];
-        }
-    });
 
     showResult();
 }
 
 
 // ===============================
-// CLEAR AUTO ADVANCE
+// CALCULATE FINAL SCORES
 // ===============================
 
-function clearAutoAdvanceTimer() {
+function calculateFinalScores() {
 
-    if (autoAdvanceTimer !== null) {
+    let survivalScore = 0;
+    let moralityScore = 0;
 
-        clearTimeout(autoAdvanceTimer);
+    selectedAnswers.forEach((answerIndex, questionIndex) => {
 
-        autoAdvanceTimer = null;
-    }
+        if (answerIndex === null) {
+            return;
+        }
+
+        const answer =
+            questions[questionIndex].answers[answerIndex];
+
+        survivalScore += answer[1];
+
+        if (
+            answer[2] !== null &&
+            answer[2] !== undefined
+        ) {
+            moralityScore += answer[2];
+        }
+
+    });
+
+    return {
+        survivalScore,
+        moralityScore
+    };
 }
 
 
@@ -1089,7 +955,21 @@ function clearAutoAdvanceTimer() {
 
 function showResult() {
 
-    clearAutoAdvanceTimer();
+    const scores =
+        calculateFinalScores();
+
+    const survivalPercentage =
+        Math.round(
+            (scores.survivalScore / maxSurvivalScore) * 100
+        );
+
+    const moralityPercentage =
+        maxMoralityScore > 0
+            ? Math.round(
+                (scores.moralityScore / maxMoralityScore) * 100
+            )
+            : 0;
+
 
     homeInfo.classList.remove("hidden");
 
@@ -1099,31 +979,12 @@ function showResult() {
 
 
     // ===============================
-    // FINAL SCORES
+    // SURVIVAL SCORE
     // ===============================
-
-    const survivalPercentage =
-        maxSurvivalScore > 0
-            ? Math.round(
-                (survivalScore / maxSurvivalScore) * 100
-            )
-            : 0;
-
-    const moralityPercentage =
-        maxMoralityScore > 0
-            ? Math.round(
-                (moralityScore / maxMoralityScore) * 100
-            )
-            : 0;
-
 
     document.getElementById("final-score").textContent =
         survivalPercentage;
 
-
-    // ===============================
-    // SURVIVAL RESULT
-    // ===============================
 
     let title;
     let description;
@@ -1142,7 +1003,6 @@ function showResult() {
 
         icon = "☠️";
 
-
     } else if (survivalPercentage <= 40) {
 
         title = "Early Survivor";
@@ -1153,7 +1013,6 @@ function showResult() {
         survival = "Several days to a few weeks";
 
         icon = "⚠️";
-
 
     } else if (survivalPercentage <= 60) {
 
@@ -1166,7 +1025,6 @@ function showResult() {
 
         icon = "🏃";
 
-
     } else if (survivalPercentage <= 80) {
 
         title = "Apocalypse Survivor";
@@ -1178,7 +1036,6 @@ function showResult() {
 
         icon = "☢️";
 
-
     } else if (survivalPercentage <= 95) {
 
         title = "Nuclear Survival Expert";
@@ -1189,7 +1046,6 @@ function showResult() {
         survival = "Several years or longer";
 
         icon = "🔥";
-
 
     } else {
 
@@ -1236,14 +1092,12 @@ function showResult() {
         moralityDescription =
             "You put survival above almost everything else. When resources and safety are limited, you are willing to make extremely difficult choices.";
 
-
     } else if (moralityPercentage <= 40) {
 
         moralityTitle = "Pragmatic Survivor";
 
         moralityDescription =
             "You care about other people, but survival comes first when resources, safety and the future of your group are at stake.";
-
 
     } else if (moralityPercentage <= 60) {
 
@@ -1252,14 +1106,12 @@ function showResult() {
         moralityDescription =
             "You try to balance survival with compassion. You understand that protecting your group sometimes requires difficult choices.";
 
-
     } else if (moralityPercentage <= 80) {
 
         moralityTitle = "Compassionate Survivor";
 
         moralityDescription =
             "You place considerable value on helping others while still understanding the harsh realities of survival.";
-
 
     } else {
 
@@ -1274,21 +1126,7 @@ function showResult() {
         moralityTitle + " — " + moralityDescription;
 
 
-    // ===============================
-    // PROGRESS
-    // ===============================
-
     progressBar.style.width = "100%";
-
-
-    // ===============================
-    // SCROLL TO RESULT
-    // ===============================
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
 }
 
 
