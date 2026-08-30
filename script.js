@@ -1,5 +1,4 @@
 const questions = [
-
 // Decision 1
 {
     question: "It's 8:17 AM. Your phone suddenly displays: BALLISTIC MISSILE THREAT — SEEK SHELTER IMMEDIATELY. Several missiles have reportedly been launched. You may have only minutes.",
