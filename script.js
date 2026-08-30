@@ -900,7 +900,7 @@ function selectAnswer(answerIndex) {
 
             }
 
-        }, 450);
+        }, 150);
     }
 }
 
