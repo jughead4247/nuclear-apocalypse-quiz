@@ -660,204 +660,138 @@ h2 {
 }
 
 
-/* ===============================
-   RESULTS
-================================ */
-
-/* =========================
-
-   RESULT SCREEN
-
-========================= */
-
-
-
-#result-screen {
-
-    text-align: center;
-
-}
-
-
+/* =========================================
+   RESULT
+========================================= */
 
 .result-card {
-
-    width: 100%;
-
+    padding: 40px 35px;
+    text-align: center;
 }
-
-
 
 .result-icon {
-
     font-size: 70px;
-
-    line-height: 1;
-
-    margin-bottom: 18px;
-
+    margin-bottom: 5px;
 }
-
-
 
 .result-label {
-
-    margin: 0 0 8px;
-
-    font-size: 13px;
-
-    font-weight: 800;
-
-    letter-spacing: 2px;
-
-    color: #777;
-
+    margin: 0;
+    color: #949c87;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
 }
-
-
 
 #result-title {
-
-    margin: 0 0 15px;
-
-    font-size: 38px;
-
-    line-height: 1.15;
-
-    font-weight: 800;
-
+    margin: 8px 0 15px;
+    color: #dce5bd;
+    font-size: 34px;
+    line-height: 1.2;
 }
-
-
 
 .score-display {
-
-    margin: 15px 0 20px;
-
+    margin-top: 10px;
     font-size: 64px;
-
-    font-weight: 900;
-
+    font-weight: bold;
     line-height: 1;
-
+    color: #c1ce91;
 }
-
-
 
 .score-display .percent {
-
     font-size: 34px;
-
 }
-
-
 
 .score-label {
-
     margin: 8px 0 25px;
-
-    color: #888;
-
-    font-size: 13px;
-
-    font-weight: 700;
-
+    color: #969d8c;
+    font-size: 14px;
     text-transform: uppercase;
-
-    letter-spacing: 1.5px;
-
+    letter-spacing: 1px;
 }
 
 
+/* =========================================
+   RESULT DESCRIPTION
+========================================= */
 
 .result-description-box {
-
-    max-width: 680px;
-
+    max-width: 700px;
     margin: 0 auto 25px;
-
-    padding: 20px;
-
-    background: #1a1a1a;
-
-    border-left: 5px solid #fff;
-
-    border-radius: 8px;
-
-    text-align: left;
-
+    padding: 18px 20px;
+    background: #151812;
+    border-left: 3px solid #aeba82;
+    border-radius: 6px;
 }
-
-
 
 #result-description {
-
     margin: 0;
-
-    color: #ccc;
-
-    font-size: 17px;
-
-    line-height: 1.6;
-
+    color: #c7cbbf;
+    font-size: 16px;
 }
 
 
-
-
-
-/* =========================
-
+/* =========================================
    SURVIVAL TIME
-
-========================= */
-
-
+========================================= */
 
 .survival-box {
-
     max-width: 500px;
-
     margin: 0 auto 30px;
-
-    padding: 20px;
-
-    background: #1a1a1a;
-
-    border: 1px solid #333;
-
+    padding: 18px;
+    background: #24281f;
+    border: 1px solid #424837;
     border-radius: 10px;
-
 }
-
-
 
 .box-label {
-
     display: block;
+    margin-bottom: 5px;
+    color: #8e967f;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
 
-    margin-bottom: 8px;
-
-    color: #777;
-
-    font-size: 12px;
-
-    font-weight: 800;
-
-    letter-spacing: 1.5px;
-
+#survival-time {
+    display: block;
+    color: #d4dfb0;
+    font-size: 21px;
 }
 
 
+/* =========================================
+   MORALITY
+========================================= */
 
-#survival-time {
+.morality-section {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 25px 20px;
+    background: #181b16;
+    border: 1px solid #383d31;
+    border-radius: 11px;
+}
 
-    display: block;
+.morality-section h3 {
+    margin: 0 0 12px;
+    color: #d9dfcd;
+    font-size: 22px;
+}
 
-    font-size: 25px;
+.morality-score {
+    margin-bottom: 10px;
+}
 
-    font-weight: 800;
+#morality-score {
+    color: #d4dfb0;
+    font-size: 38px;
+    font-weight: bold;
+}
 
+#morality-description {
+    margin: 0;
+    color: #b7bcaf;
+    font-size: 15px;
 }
 
 /* ===============================
