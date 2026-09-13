@@ -49,9 +49,9 @@
     content="Nuclear Apocalypse Survival Quiz">
 
 <meta name="twitter:description"
-    content="Could you survive a nuclear apocalypse? Make 50 difficult decisions and discover your survival and morality scores."> 
+    content="Could you survive a nuclear apocalypse? Make 50 difficult decisions and discover your survival and morality scores.">
 
-    <link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/png" href="favicon.png">
 
 <link rel="stylesheet"
     href="style.css">
@@ -73,7 +73,8 @@
     gtag('config', 'G-YC3ERJSBST');
 </script>
 
-    <!-- Google AdSense -->
+<!-- Google AdSense -->
+
 <script async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2285244517360573"
     crossorigin="anonymous"></script>
@@ -82,7 +83,9 @@
 
 
 <body>
+
 <header class="site-header">
+
     <button
         class="menu-toggle"
         id="menu-toggle"
@@ -90,46 +93,64 @@
         aria-label="Open navigation"
         aria-expanded="false"
         aria-controls="site-menu">
+
         <span></span>
         <span></span>
         <span></span>
+
     </button>
+
     <div class="site-title">
         APOCALYPSE QUIZZES
     </div>
+
 </header>
+
+
 <nav
     class="site-menu"
     id="site-menu"
     aria-label="Main navigation"
     hidden>
+
     <div class="menu-links">
+
         <a href="/">
             🏠 Home
         </a>
+
         <a href="/search/">
             🔎 Search Quizzes
         </a>
+
         <a href="/categories/">
             📂 Categories
         </a>
+
         <div class="menu-divider"></div>
+
         <a href="/about.html">
             About
         </a>
+
         <a href="/privacy.html">
             Privacy Policy
         </a>
+
         <a href="/disclaimer.html">
             Disclaimer
         </a>
+
         <a href="/contact.html">
             Contact
         </a>
-    </div>
-</nav>
-<main class="container">
 
+    </div>
+
+</nav>
+
+
+<main class="container">
 
 
     <!-- =====================================================
@@ -138,17 +159,21 @@
 
     <section id="start-screen" class="screen">
 
-        <img src="Nucleareapocalyse.png"
+        <img
+            src="Nucleareapocalyse.png"
             alt="Nuclear Apocalypse Survival Quiz"
             class="quiz-start-image">
 
 
         <p class="subtitle">
+
             The nuclear apocalypse has begun. Your choices will
             determine how well you survive — and what kind of
             person you become. There are no easy choices — only
-                consequences.
+            consequences.
+
         </p>
+
 
         <div class="info">
 
@@ -164,6 +189,7 @@
 
         </div>
 
+
         <button id="start-btn">
             START QUIZ
         </button>
@@ -176,7 +202,8 @@
          QUIZ SCREEN
          ===================================================== -->
 
-    <section id="quiz-screen"
+    <section
+        id="quiz-screen"
         class="screen hidden">
 
         <div class="quiz-card">
@@ -196,7 +223,8 @@
 
             <div class="progress-container">
 
-                <div id="progress-bar"
+                <div
+                    id="progress-bar"
                     class="progress-bar">
                 </div>
 
@@ -212,28 +240,40 @@
             </div>
 
 
-            <div id="answers"
+            <div
+                id="answers"
                 class="answers">
             </div>
 
 
             <div class="quiz-navigation">
 
-                <button id="back-btn"
+                <button
+                    id="back-btn"
                     class="nav-btn"
                     disabled>
+
                     ← Back
+
                 </button>
 
-                <button id="next-btn"
+
+                <button
+                    id="next-btn"
                     class="nav-btn">
+
                     Next →
+
                 </button>
 
-                <button id="submit-btn"
+
+                <button
+                    id="submit-btn"
                     class="nav-btn submit-btn hidden"
                     disabled>
+
                     Answer All Questions
+
                 </button>
 
             </div>
@@ -248,7 +288,8 @@
          RESULT SCREEN
          ===================================================== -->
 
-    <section id="result-screen"
+    <section
+        id="result-screen"
         class="screen hidden">
 
         <div class="result-card">
@@ -256,6 +297,7 @@
             <p class="result-label">
                 YOUR NUCLEAR APOCALYPSE RESULT
             </p>
+
 
             <h2 id="result-title">
                 Apocalypse Survivor
@@ -313,6 +355,7 @@
                     ❤️ Morality
                 </h3>
 
+
                 <div class="morality-score">
 
                     <span id="morality-score">
@@ -320,6 +363,7 @@
                     </span>
 
                 </div>
+
 
                 <p id="morality-description">
                     Your morality result will appear here.
@@ -335,99 +379,153 @@
 
             <div class="result-buttons">
 
-                <button id="restart-btn"
+                <button
+                    id="restart-btn"
                     class="primary-btn">
+
                     🔄 TRY AGAIN
+
                 </button>
 
-                <button id="share-btn"
+
+                <button
+                    id="share-btn"
                     class="secondary-btn">
+
                     📤 SHARE RESULT
+
                 </button>
 
-                <button id="challenge-btn"
+
+                <button
+                    id="challenge-btn"
                     class="secondary-btn">
+
                     ⚡ CHALLENGE SOMEONE
+
                 </button>
 
             </div>
 
         </div>
 
+
+
         <!-- =================================================
-     SUGGESTED QUIZZES
-     ================================================= -->
-<section class="suggested-quizzes">
-    <h2>
-        Suggested Quizzes
-    </h2>
-    <p class="suggested-subtitle">
-        Think you can handle more? Try another quiz.
-    </p>
-    <div class="suggested-grid">
+             SUGGESTED QUIZZES
+             ================================================= -->
 
-<!-- THE 100 KNOWLEDGE QUIZ -->
-        <a href="/the-100-knowledge/" class="suggested-card">
-                            <img
-                            src="the-100-knowledge.png"
-                            alt=" The 100 Knowledge Quiz "
-                            class="suggested-image"
-            >
-            <span class="suggested-title">
-                The 100 Knowledge Quiz
-            </span>
-            <span class="suggested-description">
-                 Test your knowledge of The 100
-            </span>
-        </a>
+        <section class="suggested-quizzes">
 
-<!-- LOVE AND MONSTERS QUIZ -->
-        <a href="/love-and-monsters-quiz/" class="suggested-card">
-                        <img
-                            src="love-and-monsters-quiz.png"
-                            alt=" Love and Monsters Quiz "
-                            class="suggested-image"
-            >
-            <span class="suggested-title">
-                Love and Monsters Quiz
-            </span>
-            <span class="suggested-description">
-          Test your knowledge of Love and Monsters 
-            </span>
-        </a>
+            <h2>
+                Suggested Quizzes
+            </h2>
 
-<!-- RESIDENT EVIL QUIZ -->
-        <a href="/resident-evil-quiz/" class="suggested-card">
-                        <img
-                            src="resident-evil.png"
-                            alt=" Resident Evil Quiz "
-                            class="suggested-image"
-                        >
-                        <span class="suggested-title">
-                            Resident Evil Quiz              
-          </span>
-                        <span class="suggested-description">
-                            Test your knowledge of the Resident Evil movies
-                        </span>
-                    </a>
-</div>
-</section>
-    
-    <!-- MORE QUIZZES CTA -->                                                                                                          
-            <div class="more-quizzes-card"> 
-    <h3> 
-        Explore More Quizzes 
-    </h3> 
- 
-    <p> 
-        Discover more apocalypse, zombie, survival and dystopian quizzes. 
-    </p> 
- 
-    <a href="/" class="more-quizzes-btn">
-        🧟 APOCALYPSE QUIZZES
-    </a>
-</div> 
-</section>
+            <p class="suggested-subtitle">
+                Think you can handle more? Try another quiz.
+            </p>
+
+
+            <div class="suggested-grid">
+
+
+                <!-- THE 100 KNOWLEDGE QUIZ -->
+
+                <a
+                    href="/the-100-knowledge/"
+                    class="suggested-card">
+
+                    <img
+                        src="the-100-knowledge.png"
+                        alt="The 100 Knowledge Quiz"
+                        class="suggested-image">
+
+                    <span class="suggested-title">
+                        The 100 Knowledge Quiz
+                    </span>
+
+                    <span class="suggested-description">
+                        Test your knowledge of The 100
+                    </span>
+
+                </a>
+
+
+
+                <!-- LOVE AND MONSTERS QUIZ -->
+
+                <a
+                    href="/love-and-monsters-quiz/"
+                    class="suggested-card">
+
+                    <img
+                        src="love-and-monsters-quiz.png"
+                        alt="Love and Monsters Quiz"
+                        class="suggested-image">
+
+                    <span class="suggested-title">
+                        Love and Monsters Quiz
+                    </span>
+
+                    <span class="suggested-description">
+                        Test your knowledge of Love and Monsters
+                    </span>
+
+                </a>
+
+
+
+                <!-- RESIDENT EVIL QUIZ -->
+
+                <a
+                    href="/resident-evil-quiz/"
+                    class="suggested-card">
+
+                    <img
+                        src="resident-evil.png"
+                        alt="Resident Evil Quiz"
+                        class="suggested-image">
+
+                    <span class="suggested-title">
+                        Resident Evil Quiz
+                    </span>
+
+                    <span class="suggested-description">
+                        Test your knowledge of the Resident Evil movies
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- MORE QUIZZES CTA -->
+
+        <div class="more-quizzes-card">
+
+            <h3>
+                Explore More Quizzes
+            </h3>
+
+            <p>
+                Discover more apocalypse, zombie, survival and
+                dystopian quizzes.
+            </p>
+
+            <a
+                href="/"
+                class="more-quizzes-btn">
+
+                🧟 APOCALYPSE QUIZZES
+
+            </a>
+
+        </div>
+
+    </section>
 
 
 
@@ -450,36 +548,348 @@
 
 
             <p>
-                Could you survive a nuclear apocalypse?
-                This 50-decision survival quiz puts you in
-                a series of difficult situations following a
-                nuclear catastrophe and tests how effectively
-                you respond.
+                Could you survive a nuclear apocalypse? This
+                50-decision survival quiz places you inside a
+                fictional nuclear disaster and asks you to make
+                difficult choices as the situation develops from
+                the first warning through sheltering, fallout,
+                resource shortages, encounters with survivors
+                and the rebuilding of a community.
             </p>
 
 
             <p>
-                Your decisions cover critical survival
-                situations involving shelter, fallout,
-                radiation, water, food, medical supplies,
-                information, other survivors, cooperation
-                and difficult moral choices.
+                The scenario is designed around more than simply
+                choosing the most aggressive option. Good decisions
+                may involve finding effective shelter, limiting
+                unnecessary exposure, protecting drinking water,
+                conserving supplies, evaluating information,
+                treating injuries, managing risks and deciding
+                when it is safer to remain sheltered or relocate.
             </p>
 
 
             <p>
-                Each decision affects your overall survival
-                score. Some decisions also affect your
-                morality score, showing how your survival
-                choices compare with your willingness to help
-                or sacrifice for others.
+                As the scenario progresses, the challenges become
+                less about surviving the first few hours and more
+                about managing limited resources and working with
+                other people. Food production, water supplies,
+                medicine, security, cooperation, trade and community
+                organization become increasingly important.
+            </p>
+
+
+            <p>
+                Each decision contributes to your overall survival
+                score. Some decisions also contribute to a separate
+                morality score, allowing the quiz to explore the
+                difference between making the most practical survival
+                decision and making the most compassionate one.
+            </p>
+
+
+            <p>
+                The quiz is intended to be challenging rather than
+                to provide a simple list of correct answers. Some
+                situations involve genuine trade-offs where protecting
+                one person, conserving resources or helping strangers
+                can create additional risks for everyone else.
             </p>
 
 
             <p class="disclaimer">
-                This quiz is created for entertainment and
-                educational purposes. It is not a substitute
-                for official emergency guidance.
+                This quiz is created for entertainment and educational
+                purposes. It is not a substitute for official emergency
+                guidance, professional medical advice or instructions
+                from emergency-management and public-health authorities.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             NUCLEAR SURVIVAL INFORMATION
+        ========================== -->
+
+        <section class="home-info">
+
+            <h2>
+                Understanding Nuclear Disaster Survival
+            </h2>
+
+
+            <p>
+                A nuclear disaster involves several different hazards,
+                and surviving one is not simply a matter of getting as
+                far away from an explosion as possible. The immediate
+                blast, intense heat, fires, radioactive fallout and
+                disruption of essential services can create different
+                dangers at different times. Understanding these
+                differences is important when thinking about the
+                decisions presented in this quiz.
+            </p>
+
+
+            <h3>
+                What is nuclear fallout?
+            </h3>
+
+
+            <p>
+                Nuclear fallout is radioactive material that can settle
+                on the ground, buildings, vehicles and other surfaces
+                after a nuclear explosion. Depending on the type of
+                explosion, weather conditions and other factors, fallout
+                can travel significant distances from the area of the
+                blast. It may be difficult or impossible to identify
+                radioactive contamination simply by looking at it.
+            </p>
+
+
+            <p>
+                This is why the quiz places considerable importance on
+                shelter, reliable information and avoiding unnecessary
+                exposure. A location that appears normal may still have
+                contamination that cannot be detected without appropriate
+                equipment.
+            </p>
+
+
+            <h3>
+                Why does shelter matter after a nuclear explosion?
+            </h3>
+
+
+            <p>
+                A substantial building can provide protection from some
+                of the hazards associated with a nuclear explosion.
+                During the fallout period, putting more material between
+                yourself and radioactive fallout can reduce exposure.
+                Interior areas away from exterior walls, windows and
+                roofs can provide more protection than exposed outdoor
+                locations.
+            </p>
+
+
+            <p>
+                The safest decision can therefore change over time.
+                Immediately after an explosion, people may need to
+                protect themselves from blast and heat. Later, the major
+                concern in some areas may become radioactive fallout.
+                Leaving shelter simply because the sky looks clear does
+                not establish that an area is safe.
+            </p>
+
+
+            <h3>
+                What is the difference between the blast and fallout?
+            </h3>
+
+
+            <p>
+                The blast from a nuclear weapon occurs extremely quickly,
+                while fallout can create a continuing exposure hazard
+                afterward. Someone who is outside the immediate blast
+                area may avoid severe structural damage but still face
+                danger if radioactive material reaches the area.
+            </p>
+
+
+            <p>
+                Fallout conditions depend on factors such as the weapon,
+                explosion characteristics, distance, weather and wind.
+                There is therefore no universal distance that guarantees
+                safety after every nuclear explosion.
+            </p>
+
+
+            <h3>
+                What should people know about radiation exposure?
+            </h3>
+
+
+            <p>
+                Radiation cannot reliably be detected using human
+                senses. People cannot determine whether an area is safe
+                simply because they cannot see, smell or feel radiation.
+                Reliable emergency information and appropriate radiation
+                measurements are much more useful than assumptions based
+                on appearance.
+            </p>
+
+
+            <p>
+                The quiz therefore rewards decisions that reduce
+                unnecessary exposure and encourage people to obtain
+                reliable information rather than relying on rumors,
+                guesses or observations such as animal behavior.
+            </p>
+
+
+            <h3>
+                What about contaminated clothing and dust?
+            </h3>
+
+
+            <p>
+                Radioactive material can settle on people and clothing.
+                If someone has been exposed to potentially contaminated
+                dust or fallout, preventing that material from being
+                carried into a clean shelter area can be important.
+                Appropriate decontamination procedures can reduce the
+                amount of radioactive material on the body or brought
+                indoors.
+            </p>
+
+
+            <p>
+                In a real emergency, people should follow instructions
+                from emergency authorities and public-health agencies
+                regarding decontamination, sheltering and evacuation.
+            </p>
+
+
+            <h3>
+                Why are water and food important survival problems?
+            </h3>
+
+
+            <p>
+                A nuclear disaster can disrupt water treatment,
+                electricity, transportation, food distribution and
+                communications. Stored supplies may therefore become
+                extremely valuable, especially during the early stages
+                of an emergency.
+            </p>
+
+
+            <p>
+                Water that appears clean is not automatically safe.
+                Potential radioactive contamination must be considered
+                separately from ordinary problems such as bacteria or
+                chemical pollution. Food and water decisions should be
+                based on reliable information about the local situation
+                rather than appearance alone.
+            </p>
+
+
+            <h3>
+                Why does communication matter?
+            </h3>
+
+
+            <p>
+                Reliable information can be one of the most valuable
+                resources after a major disaster. Emergency broadcasts
+                may provide information about sheltering, evacuation,
+                contaminated areas, available assistance and other
+                hazards.
+            </p>
+
+
+            <p>
+                At the same time, a disaster can produce rumors,
+                misinformation and conflicting reports. A strong
+                survival decision is often not simply the fastest
+                decision; it is the decision made using the best
+                information available while avoiding unnecessary risk.
+            </p>
+
+
+            <h3>
+                Why does the quiz include other survivors?
+            </h3>
+
+
+            <p>
+                Long-term survival after a major disaster would involve
+                more than finding food and hiding from danger. Groups
+                would need to manage water, sanitation, medical care,
+                shelter, food production, security, communication,
+                equipment and relationships with other people.
+            </p>
+
+
+            <p>
+                Cooperation can provide major advantages, but trusting
+                unknown people without considering security can also
+                create risks. Several decisions in this quiz are
+                designed around that balance rather than treating every
+                survivor as either a friend or an enemy.
+            </p>
+
+
+            <h3>
+                Why does the quiz include morality?
+            </h3>
+
+
+            <p>
+                Extreme disasters can create situations where survival,
+                fairness and compassion appear to conflict. The morality
+                score is designed to explore that fictional dimension
+                of the scenario.
+            </p>
+
+
+            <p>
+                A high survival score does not necessarily mean that a
+                person always makes the most compassionate decision.
+                Likewise, choosing to help another person can sometimes
+                involve additional risk or resource consumption. The
+                separate morality score allows the quiz to represent
+                those differences instead of treating every decision as
+                purely practical.
+            </p>
+
+
+            <h3>
+                What changes during long-term survival?
+            </h3>
+
+
+            <p>
+                The challenges of a disaster would change over time.
+                Immediate survival might focus on shelter and avoiding
+                dangerous exposure. Later challenges could include
+                finding dependable water, maintaining food supplies,
+                repairing equipment, providing medical care and
+                establishing reliable communication.
+            </p>
+
+
+            <p>
+                If a community survives for months or years, its
+                priorities would become broader. Agriculture, education,
+                sanitation, healthcare, infrastructure, trade,
+                governance and preparation for future emergencies could
+                become just as important as immediate survival skills.
+            </p>
+
+
+            <h3>
+                Is this quiz a real emergency guide?
+            </h3>
+
+
+            <p>
+                No. This is a fictional survival quiz created for
+                entertainment and educational discussion. Its scenarios
+                are inspired by real concepts involving nuclear
+                disasters, radiation protection, emergency preparedness
+                and human decision-making, but the scoring system and
+                estimated survival times are fictional.
+            </p>
+
+
+            <p class="disclaimer">
+                If a real nuclear emergency occurs, do not use this quiz
+                as an emergency procedure. Follow instructions from
+                official emergency-management, civil-defence and
+                public-health authorities, and use reliable emergency
+                information for decisions about shelter, evacuation,
+                food, water and medical care.
             </p>
 
         </section>
@@ -502,12 +912,11 @@
             </h3>
 
             <p>
-                You will face 50 survival decisions based on
-                situations that could arise after a nuclear
-                catastrophe. Choose the option you believe gives
-                you the best chance of surviving. Your choices
-                are then used to calculate your survival and
-                morality scores.
+                You will face 50 survival decisions based on situations
+                that could arise after a nuclear catastrophe. Choose
+                the option you believe gives you the best chance of
+                surviving. Your choices are then used to calculate
+                your survival and morality scores.
             </p>
 
 
@@ -516,9 +925,9 @@
             </h3>
 
             <p>
-                The quiz contains 50 decisions. Each situation
-                presents four possible choices, and you must
-                select one before moving to the next decision.
+                The quiz contains 50 decisions. Each situation presents
+                four possible choices, and you must select one before
+                moving to the next decision.
             </p>
 
 
@@ -527,10 +936,10 @@
             </h3>
 
             <p>
-                Your survival score represents how effectively
-                your decisions address the challenges presented
-                throughout the scenario. A higher score indicates
-                stronger overall survival decision-making.
+                Your survival score represents how effectively your
+                decisions address the challenges presented throughout
+                the scenario. A higher score indicates stronger overall
+                survival decision-making.
             </p>
 
 
@@ -539,10 +948,10 @@
             </h3>
 
             <p>
-                The morality score reflects the moral dimension
-                of your decisions. Some choices prioritize your
-                own survival, while others involve helping,
-                protecting or sacrificing for other people.
+                The morality score reflects the moral dimension of your
+                decisions. Some choices prioritize your own survival,
+                while others involve helping, protecting or sacrificing
+                for other people.
             </p>
 
 
@@ -551,12 +960,11 @@
             </h3>
 
             <p>
-                Your estimated survival is the result assigned
-                by the quiz based on your overall performance.
-                It is part of the fictional survival scenario
-                and should not be interpreted as a scientific
-                prediction of how long someone would actually
-                survive after a nuclear disaster.
+                Your estimated survival is the result assigned by the
+                quiz based on your overall performance. It is part of
+                the fictional survival scenario and should not be
+                interpreted as a scientific prediction of how long
+                someone would actually survive after a nuclear disaster.
             </p>
 
 
@@ -565,11 +973,11 @@
             </h3>
 
             <p>
-                The decisions cover subjects such as nuclear
-                fallout, shelter, radiation exposure, water,
-                food, supplies, medical needs, communication,
-                information, group survival, resource
-                management and encounters with other survivors.
+                The decisions cover subjects such as nuclear fallout,
+                shelter, radiation exposure, water, food, supplies,
+                medical needs, communication, information, group
+                survival, resource management and encounters with
+                other survivors.
             </p>
 
 
@@ -578,13 +986,79 @@
             </h3>
 
             <p>
-                The quiz uses realistic survival concepts as
-                inspiration, but the individual situations and
-                decisions are presented as a fictional
-                apocalypse scenario. The quiz is designed to
-                test decision-making and provide an entertaining
-                survival challenge rather than predict real-world
-                events.
+                The quiz uses realistic survival concepts as inspiration,
+                but the individual situations and decisions are presented
+                as a fictional apocalypse scenario. The quiz is designed
+                to test decision-making and provide an entertaining
+                survival challenge rather than predict real-world events.
+            </p>
+
+
+            <h3>
+                Why doesn't the quiz give one universal safe distance?
+            </h3>
+
+            <p>
+                Nuclear effects depend on many variables, including the
+                characteristics of the explosion, weather, terrain,
+                structures and distance from the detonation. Because
+                conditions can vary substantially, a single distance
+                cannot be treated as a universal guarantee of safety.
+            </p>
+
+
+            <h3>
+                Can radiation be seen or smelled?
+            </h3>
+
+            <p>
+                Radiation itself cannot be reliably detected by human
+                senses. An area can appear normal while still containing
+                radioactive contamination. This is one reason the quiz
+                emphasizes reliable information, shelter and appropriate
+                monitoring instead of judging safety from appearances.
+            </p>
+
+
+            <h3>
+                Why is staying inside sometimes better than leaving?
+            </h3>
+
+            <p>
+                After a nuclear explosion, leaving shelter can expose
+                people to additional hazards, particularly if radioactive
+                fallout is present outside. The appropriate decision
+                depends on the circumstances, available information and
+                official emergency instructions. The quiz uses this
+                uncertainty as part of its decision-making challenge.
+            </p>
+
+
+            <h3>
+                What happens if food and water supplies become limited?
+            </h3>
+
+            <p>
+                Long-term survival requires careful resource management.
+                Groups may need to ration supplies, identify additional
+                sources, protect essential reserves and determine whether
+                potential food or water sources are safe. The quiz
+                presents several situations where immediate consumption
+                is not necessarily the best long-term strategy.
+            </p>
+
+
+            <h3>
+                Why are rumors dangerous after a disaster?
+            </h3>
+
+            <p>
+                Communication systems may be disrupted during a major
+                disaster, making incomplete or false information easier
+                to spread. Decisions based on rumors can cause people to
+                leave shelter unnecessarily, waste resources or take
+                avoidable risks. Reliable emergency information is
+                therefore an important part of the scenario.
             </p>
 
 
@@ -593,10 +1067,9 @@
             </h3>
 
             <p>
-                Yes. Select TRY AGAIN after receiving your result
-                to restart the quiz and see whether you can
-                achieve a higher survival score or make different
-                decisions.
+                Yes. Select TRY AGAIN after receiving your result to
+                restart the quiz and see whether you can achieve a
+                higher survival score or make different decisions.
             </p>
 
 
@@ -605,47 +1078,64 @@
             </h3>
 
             <p>
-                Yes. After completing the quiz, use the
-                CHALLENGE SOMEONE button to share your result
-                and challenge your friends to see how they would
-                survive the same nuclear apocalypse scenario.
+                Yes. After completing the quiz, use the CHALLENGE SOMEONE
+                button to share your result and challenge your friends
+                to see how they would survive the same nuclear apocalypse
+                scenario.
             </p>
 
         </section>
 
 
     </div>
-    </main>
+
+</main>
 
 
-    <!-- =====================================================
-         FOOTER
-         ===================================================== -->
 
-   <footer class="site-footer">
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="site-footer">
+
     <div class="footer-inner">
+
         <div class="footer-brand">
             APOCALYPSE QUIZZES
         </div>
+
+
         <div class="footer-links">
+
             <a href="/about.html">
                 About
             </a>
+
             <a href="/privacy.html">
                 Privacy Policy
             </a>
+
             <a href="/disclaimer.html">
                 Disclaimer
             </a>
+
             <a href="/contact.html">
                 Contact
             </a>
+
         </div>
+
+
         <div class="copyright">
             © 2026 Apocalypse Quizzes
         </div>
+
     </div>
+
 </footer>
+
+
 
 <script src="script.js"></script>
 
